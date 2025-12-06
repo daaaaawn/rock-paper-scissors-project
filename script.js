@@ -14,7 +14,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let humanChoice = prompt("Pick between rock, paper, scissors.").toLowerCase();
+    const humanChoice = prompt("Pick between rock, paper, and scissors.").toLowerCase();
     
     if (humanChoice === "rock") {
         return humanChoice;
@@ -27,44 +27,53 @@ function getHumanChoice() {
     }
 }
 
-let computerChoice = getComputerChoice();
-let humanChoice = getHumanChoice();
-
 function playRound(computerChoice, humanChoice) {
+    const tieMessage = `Both players chose ${computerChoice}! It's a tie!`;
+    const computerWins = `Computer chose ${computerChoice} while Player chose ${humanChoice}. Computer wins!`;
+    const playerWins = `Computer chose ${computerChoice} while Player chose ${humanChoice}. Player wins!`;
+
     if (computerChoice === "rock") {
         if (humanChoice === "rock") {
-            return `Both players chose ${computerChoice}! It's a tie!`;
+            return tieMessage;
         } else if (humanChoice === "paper") {
             humanScore++;
-            return `Human player wins!`;
+            return playerWins;
         } else if (humanChoice === "scissors") {
             computerScore++;
-            return `Computer player wins!`;
+            return computerWins;
         }
     } else if (computerChoice === "paper") {
         if (humanChoice === "rock") {
             computerScore++;
-            return `Computer player wins!`;
+            return computerWins;
         } else if (humanChoice === "paper") {
-            return `Both players chose ${computerChoice}! It's a tie!`
+            return tieMessage;
         } else if (humanChoice === "scissors") {
             humanScore++;
-            return `Human player wins!`;
+            return playerWins;
         }
     } else if (computerChoice === "scissors") {
         if (humanChoice === "rock") {
             humanScore++;
-            return `Human player wins!`;
+            return playerWins;
         } else if (humanChoice === "paper") {
             computerScore++;
-            return `Computer player wins!`;
+            return computerWins;
         } else if (humanChoice === "scissors") {
-            return `Both players chose ${computerChoice}! It's a tie!`;
+            return tieMessage;
         }
     }
 }
 
 function playGame() {
-    playRound();
+    for (let i = 1; i <= 5; i++) {
+        const computerChoice = getComputerChoice();
+        const humanChoice = getHumanChoice();
+
+        const result = playRound(computerChoice, humanChoice);
+        console.log(`Round ${i} result: ${result}`);
+        console.log(`Computer: ${computerScore}, Player: ${humanScore}`);
+    }
 }
 
+playGame();
