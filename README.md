@@ -1,1 +1,1 @@
-Calculator project for TheOdinProject
+Rock-paper-scissors project for TheOdinProject
